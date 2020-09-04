@@ -1,0 +1,604 @@
+priority -40
+
+snippet art "Article class"
+\\documentclass{article}
+
+$1
+
+\\begin{document}
+\title{$2}
+\date{$4}
+${5:\maketitle}
+
+$0
+\\end{document}
+endsnippet
+
+snippet ams "AMS packages"
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+endsnippet
+
+snippet set "Set brackets"
+\\{$1\\} $0
+endsnippet
+
+snippet .. "Dots" iA
+\dots
+endsnippet
+
+snippet ** "Superscript star" iA
+^{\star}
+endsnippet
+
+snippet T "Transpose" i
+^{\top}
+endsnippet
+
+snippet sum "Sum" i
+\\sum_{${1:i}=${2:1}}^{${3:n}} $0
+endsnippet
+
+snippet int "Integral" i
+\\int_{${1:a}}^{${2:b}} $3 \,\mathrm{d}${4:x} $0
+endsnippet
+
+snippet pkg "Use package" b
+\usepackage{$1}
+endsnippet
+
+snippet up "Use package" b
+\usepackage{$1}
+endsnippet
+
+snippet pkgopt "Use package with options" b
+\usepackage[$2]{$1}
+endsnippet
+
+#PREAMBLE
+#newcommand
+snippet nc "\newcommand"
+\\newcommand{\\${1:cmd}}[${2:opt}]{${3:realcmd}} ${0}
+endsnippet
+
+#usepackage
+snippet up "\usepackage"
+\\usepackage[${1:options}]{${2:package}} ${0}
+endsnippet
+
+#newunicodechar
+snippet nuc "\newunicodechar"
+\\newunicodechar{${1}}{${2:\\ensuremath}${3:tex-substitute}}} ${0}
+endsnippet
+
+#DeclareMathOperator
+snippet dmo "\DeclareMathOperator"
+\\DeclareMathOperator{${1}}{${2}} ${0}
+endsnippet
+
+
+#DOCUMENT
+# \begin{}...\end{}
+snippet begin "\begin{} ... \end{} block"
+\\begin{${1:env}}
+	${0:${VISUAL}}
+\\end{$1}
+endsnippet
+
+# Tabular
+snippet tab "tabular (or arbitrary) environment"
+\\begin{${1:tabular}}{${2:c}}
+	${0:${VISUAL}}
+\\end{$1}
+endsnippet
+
+snippet thm "thm (or arbitrary) environment with optional argument"
+\\begin[${1:author}]{${2:thm}}
+	${0:${VISUAL}}
+\\end{$2}
+endsnippet
+
+snippet center "center environment"
+\\begin{center}
+	${0:${VISUAL}}
+\\end{center}
+endsnippet
+
+# Align(ed)
+snippet ali "align(ed) environment"
+\\begin{align${1:ed}}
+	\\label{eq:${2}}
+	${0:${VISUAL}}
+\\end{align$1}
+endsnippet
+
+# Gather(ed)
+snippet gat "gather(ed) environment"
+\\begin{gather${1:ed}}
+	${0:${VISUAL}}
+\\end{gather$1}
+endsnippet
+
+# Equation
+snippet eq "equation environment"
+\\begin{equation}
+	${0:${VISUAL}}
+\\end{equation}
+endsnippet
+
+# Equation
+snippet eql "Labeled equation environment"
+\\begin{equation}
+	\\label{eq:${2}}
+${0:${VISUAL}}
+\\end{equation}
+endsnippet
+
+# Equation
+snippet eq"* unnumbered equation environment"
+\\begin{equation*}
+	${0:${VISUAL}}
+\\end{equation*}
+endsnippet
+
+# Unnumbered Equation
+snippet \ "unnumbered equation: \[ ... \]"
+\\[
+	${0:${VISUAL}}
+\\]
+endsnippet
+
+# Equation array
+snippet eqnarray "eqnarray environment"
+\\begin{eqnarray}
+	${0:${VISUAL}}
+\\end{eqnarray}
+endsnippet
+
+# Label
+snippet lab "\label"
+\\label{${1:eq:}${2:fig:}${3:tab:}${0}}
+endsnippet
+
+# Enumerate
+snippet enum "enumerate environment"
+\\begin{enumerate}
+	\\item ${0}
+\\end{enumerate}
+endsnippet
+
+snippet enuma "enumerate environment"
+\\begin{enumerate}[(a)]
+	\\item ${0}
+\\end{enumerate}
+endsnippet
+
+snippet enumi "enumerate environment"
+\\begin{enumerate}[(i)]
+	\\item ${0}
+\\end{enumerate}
+endsnippet
+
+# Itemize
+snippet item "itemize environment"
+\\begin{itemize}
+	\\item ${0}
+\\end{itemize}
+endsnippet
+
+snippet it "\item"
+\\item ${1:${VISUAL}}
+endsnippet
+
+# Description
+snippet desc "description environment"
+\\begin{description}
+	\\item[${1}] ${0}
+\\end{description}
+endsnippet
+
+# Endless new item
+snippet ]i "\item (recursive)"
+\\item ${1}
+	${0:]i}
+endsnippet
+
+# Matrix
+snippet mat "smart matrix environment"
+\\begin{${1:p/b/v/V/B/small}matrix}
+	${0:${VISUAL}}
+\\end{$1matrix}
+endsnippet
+
+# Cases
+snippet cas "cases environment"
+\\begin{cases}
+	${1:equation}, &\\text{ if }${2:case}\\
+	${0:${VISUAL}}
+\\end{cases}
+endsnippet
+
+# Split
+snippet spl "split environment"
+\\begin{split}
+	${0:${VISUAL}}
+\\end{split}
+endsnippet
+
+# Part
+snippet part "document \part"
+\\part{${1:part name}} % (fold)%
+\\label{prt:${2:$1}}
+${0}
+% part $2 (end)
+endsnippet
+
+# Chapter
+snippet cha "\chapter"
+\\chapter{${1:chapter name}}%
+\\label{cha:${2:$1}}
+${0}
+endsnippet
+
+# Section
+snippet sec "\section"
+\\section{${1:section name}}%
+\\label{sec:${1/ /_/g}}
+${0}
+endsnippet
+
+# Section without number
+snippet sec* "\section*"
+\\section*{${1:section name}}%
+\\label{sec:${1/ /_/g}}
+${0}
+endsnippet
+
+# Sub Section
+snippet sub "\subsection"
+\\subsection{${1:subsection name}}%
+\\label{sub:${1/ /_/g}}
+${0}
+# Sub Section without number
+endsnippet
+
+snippet sub* "\subsection*"
+\\subsection*{${1:subsection name}}%
+\\label{sub:${1/ /_/g}}
+${0}
+# Sub Sub Section
+endsnippet
+
+snippet ssub "\subsubsection"
+\\subsubsection{${1:subsubsection name}}%
+\\label{ssub:${1/ /_/g}}
+${0}
+# Sub Sub Section without number
+endsnippet
+
+snippet ssub* "\subsubsection*"
+\\subsubsection*{${1:subsubsection name}}%
+\\label{ssub:${1/ /_/g}}
+${0}
+# Paragraph
+endsnippet
+
+snippet par "\paragraph"
+\\paragraph{${1:paragraph name}}%
+\\label{par:${2:$1}}
+${0}
+# Sub Paragraph
+endsnippet
+
+snippet subp "\subparagraph"
+\\subparagraph{${1:subparagraph name}}%
+\\label{subp:${2:$1}}
+${0}
+endsnippet
+
+snippet ni "\noindent"
+\\noindent
+${0}
+#References
+endsnippet
+
+snippet itd "description \item"
+\\item[${1:description}] ${0:item}
+endsnippet
+
+snippet figure "reference to a figure"
+${1:Figure}~\\ref{${2:fig:}}
+endsnippet
+
+snippet table "reference to a table"
+${1:Table}~\\ref{${2:tab:}}
+endsnippet
+
+snippet listing "reference to a listing"
+${1:Listing}~\\ref{${2:list}}
+endsnippet
+
+snippet section "reference to a section"
+${1:Section}~\\ref{sec:${2}} ${0}
+endsnippet
+
+snippet page "reference to a page"
+${1:page}~\\pageref{${2}} ${0}
+endsnippet
+
+snippet index "\index"
+\\index{${1:index}} ${0}
+#Citations
+endsnippet
+
+snippet citen "\citen"
+\\citen{${1}} ${0}
+# natbib citations
+endsnippet
+
+snippet citep "\citep"
+\\citep{${1}} ${0}
+endsnippet
+
+snippet citet "\citet"
+\\citet{${1}} ${0}
+endsnippet
+
+snippet cite "\cite[]{}"
+\\cite[${1}]{${2}} ${0}
+endsnippet
+
+snippet citea "\citeauthor"
+\\citeauthor{${1}} ${0}
+endsnippet
+
+snippet citey "\citeyear"
+\\citeyear{${1}} ${0}
+endsnippet
+
+snippet fcite "\footcite[]{}"
+\\footcite[${1}]{${2}}${0}
+#Formating text: italic, bold, underline, small capital, emphase ..
+endsnippet
+
+snippet ita "italic text"
+\\textit{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet bf "bold face text"
+\\textbf{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet under "underline text"
+\\underline{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet over "overline text"
+\\overline{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet emp "emphasize text"
+\\emph{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet sc "small caps text"
+\\textsc{${1:${VISUAL:text}}}${0}
+#Choosing font
+endsnippet
+
+snippet sf "sans serife text"
+\\textsf{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet rm "roman font text"
+\\textrm{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet tt "typewriter (monospace) text"
+\\texttt{${t "typewriter (monospace) te1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet tsub "subscripted text"
+\\textsubscript{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet tsup "superscripted text"
+\\textsuperscript{${1:${VISUAL:text}}}${0}
+#Math font
+endsnippet
+
+snippet mf "mathfrak"
+\\mathfrak{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet mc "mathcal"
+\\mathcal{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet ms "mathscr"
+\\mathscr{${1:${VISUAL:text}}}${0}
+#misc
+endsnippet
+
+snippet ft "\footnote"
+\\footnote{${1:${VISUAL:text}}}${0}
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${2:htpb}]
+	\centering
+	\includegraphics[width=${3:0.8}\linewidth]{${4:name.ext}}
+	\caption{${4/(\w+)\.\w+/\u$1/}$0}%
+	\label{fig:${4/(\w+)\.\w+/$1/}}
+\end{figure}
+endsnippet
+
+snippet tikz "figure environment (tikzpicture)"
+\\begin{figure}[htpb]
+\\begin{center}
+\\begin{tikzpicture}[scale=${1:1}, transform shape]
+	${2}
+\\end{tikzpicture}
+\\end{center}
+\\caption{${3}}%
+\\label{fig:${4}}
+\\end{figure}
+${0}
+endsnippet
+
+snippet subfig "subfigure environment"
+\\begin{subfigure}[${1}]{${2:\\textwidth}}
+\\begin{center}
+	${3}
+\\end{center}
+\\caption{${4}}
+\\label{fig:${5}}
+\\end{subfigure}
+${0}
+endsnippet
+
+snippet tikzcd "tikzcd environment in equation"
+\\begin{equation}
+\\begin{tikzcd}
+	${1}
+\\end{tikzcd}
+\\end{equation}
+${0}
+endsnippet
+
+snippet tikzcd* "tikzcd environment in equation*"
+\\begin{equation*}
+\\begin{tikzcd}
+	${1}
+\\end{tikzcd}
+\\end{equation*}
+${0}
+#math
+endsnippet
+
+snippet stackrel "\stackrel{}{}"
+\\stackrel{${1:above}}{${2:below}} ${0}
+endsnippet
+
+snippet frac "\frac{}{}"
+\\frac{${1:num}}{${2:denom}} ${0}
+endsnippet
+
+snippet lim "\lim_{}"
+\\lim_{${1:n \\to \\infty}} ${0}
+endsnippet
+
+snippet frame "frame environment"
+\\begin{frame}[${1:t}]
+	\frametitle{${2:title}}
+	\framesubtitle{${3:subtitle}}
+	${0:${VISUAL}}
+\\end{frame}
+endsnippet
+
+snippet block "block environment"
+\\begin{block}{${1:title}}
+	${0:${VISUAL}}
+\\end{block}
+endsnippet
+
+snippet alert "alert text"
+\\alert{${1:${VISUAL:text}}} ${0}
+endsnippet
+
+snippet alertblock "alertblock environment"
+\\begin{alertblock}{${1:title}}
+	${0:${VISUAL}}
+\\end{alertblock}
+endsnippet
+
+snippet example "exampleblock environment"
+\\begin{exampleblock}{${1:title}}
+	${0:${VISUAL}}
+\\end{exampleblock}
+endsnippet
+
+snippet col2 "two-column environment"
+\\begin{columns}
+	\\begin{column}{0.5\\textwidth}
+		${1}
+	\\end{column}
+	\\begin{column}{0.5\\textwidth}
+		${0}
+	\\end{column}
+\\end{columns}
+endsnippet
+
+snippet multicol2 "two-column environment with multicol"
+\\begin{multicols}{2}
+	${1}
+	\columnbreak
+	${0}
+\\end{multicols}
+endsnippet
+
+snippet \{ "\{ \}"
+\\{ ${0} \\}
+#delimiter
+endsnippet
+
+snippet lr "left right"
+\\left${1} ${0:${VISUAL}} \\right$1
+endsnippet
+
+snippet lr( "left( right)"
+\\left( ${0:${VISUAL}} \\right)
+endsnippet
+
+snippet lr| "left| right|"
+\\left| ${0:${VISUAL}} \\right|
+endsnippet
+
+snippet lr{ "left\{ right\}"
+\\left\\{ ${0:${VISUAL}} \\right\\}
+endsnippet
+
+snippet lr[ "left[ right]"
+\\left[ ${0:${VISUAL}} \\right]
+endsnippet
+
+snippet lra "langle rangle"
+\\langle ${0:${VISUAL}} \\rangle
+# Code listings
+endsnippet
+
+snippet lst
+"\\begin{listing}[language=${1:language}]"
+	${0:${VISUAL}}
+\\end{listing}
+endsnippet
+
+snippet lsi
+"\\lstinline|${1}| ${0}"
+# Hyperlinks
+endsnippet
+
+snippet url
+"\\url{${1}} ${0}"
+endsnippet
+
+snippet href
+"\\href{${1}}{${2}} ${0}"
+# URL from Clipboard.
+endsnippet
+
+snippet urlc
+"\\url{`@+`} ${0}"
+endsnippet
+
+snippet hrefc
+"\\href{`@+`}{${1}} ${0}"
+# enquote from package csquotes
+endsnippet
+
+snippet enq enquote
+\\enquote{${1:${VISUAL:text}}} ${0}
+endsnippet
+
