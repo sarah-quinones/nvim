@@ -27,10 +27,12 @@ function! Compile_asm(linenum)
   if line !~ "^//.*"
     return Compile_asm_impl(defaults[a:linenum - 1])
   endif
-  let compiler = split(a:line)[1]
+  let compiler = split(line)[1]
   let compiler_list = ["gcc", "clang", "cc", "g++", "clang++", "c++"]
   if index(compiler_list, compiler) == -1
     return Compile_asm_impl(defaults[a:linenum - 1])
+  else
+    return Compile_asm_impl(line)
   endif
 endfunction
 

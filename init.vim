@@ -23,7 +23,7 @@ xnoremap <m-tab> <F13>
 cnoremap <m-tab> <space><bs>
 tnoremap <m-tab> <c-\><c-n>i
 
-let &guifont='Hack Nerd Font:h14'
+let &guifont='Hack Nerd Font:h12'
 let g:neovide_cursor_vfx_mode = "ripple"
 
 set mouse=n               " Disable mouse support
@@ -89,6 +89,8 @@ Plug 'mkarmona/materialbox'
 Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'lifepillar/vim-solarized8'
+Plug 'kyazdani42/blue-moon'
+Plug 'Iron-E/nvim-highlite'
 " Plugins
 Plug 'neoclide/coc.nvim', { 'branch' : 'master', 'do': 'yarn install --frozen-lockfile' }
 Plug 'w0rp/ale'
@@ -139,12 +141,6 @@ let g:gruvbox_contrast_light = "soft"
 let g:gruvbox_contrast_dark = "medium"
 let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1
-
-let g:rainbow_active = 1
-augroup Rainbow
-  autocmd!
-  autocmd FileType cmake RainbowToggleOff
-augroup end
 
 let g:better_whitespace_operator = ''
 let g:better_whitespace_filetypes_blacklist =
@@ -218,8 +214,8 @@ call s:Source('config/terminal.vim')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Other User Config                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:light_theme = "onedark"
-let g:dark_theme ="onedark"
+let g:light_theme = "gruvbox8_soft"
+let g:dark_theme = "gruvbox8_soft"
 
 set background=dark
 execute "colorscheme " . g:dark_theme
