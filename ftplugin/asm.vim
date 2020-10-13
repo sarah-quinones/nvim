@@ -1,1 +1,2 @@
 ALEDisableBuffer
+setlocal nowrap

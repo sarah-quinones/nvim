@@ -23,7 +23,7 @@ xnoremap <m-tab> <F13>
 cnoremap <m-tab> <space><bs>
 tnoremap <m-tab> <c-\><c-n>i
 
-let &guifont='Hack Nerd Font:h12'
+let &guifont='Hack Nerd Font,Twitter Color Emoji,Kawkab Mono,Emoji One:h12'
 let g:neovide_cursor_vfx_mode = "ripple"
 
 set mouse=n               " Disable mouse support
