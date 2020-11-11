@@ -92,7 +92,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'kyazdani42/blue-moon'
 Plug 'Iron-E/nvim-highlite'
 " Plugins
-Plug 'neoclide/coc.nvim', { 'branch' : 'master', 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
@@ -127,8 +127,20 @@ Plug 'mbbill/undotree'
 Plug 'wellle/targets.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'lambdalisue/suda.vim'
+Plug 'nvim-treesitter/nvim-treesitter'
 call plug#end()
 
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
+
+let g:coc_global_extensions = ['coc-python', 'coc-snippets', 'coc-clangd', 'coc-rust-analyzer']
 " All possible highlighters
 let g:Hexokinase_highlighters = [
 \   'virtual',

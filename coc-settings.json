@@ -10,34 +10,6 @@
   },
   "diagnostic.displayByAle": false,
   "coc.preferences.previewAutoClose": false,
-  "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "filetypes": [
-        "c",
-        "cc",
-        "cpp",
-        "h",
-        "hpp",
-        "hxx"
-      ],
-      "rootPatterns": [
-        ".clangd-root",
-        ".clangd",
-        "compile_commands.json",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": ".clangd-cache"
-        },
-        "highlight": {
-          "lsRanges": true
-        }
-      }
-    }
-  },
   "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "python.pythonPath": "~/.local/share/python/venv/bin/python3",
   "python.formatting.blackPath": "~/.local/share/python/venv/bin/black" ,
