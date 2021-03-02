@@ -160,3 +160,10 @@ endsnippet
 snippet f+ "Reenable clang format"
 // clang-format on
 endsnippet
+
+snippet debug_type "Error with type names"
+template <typename... Ts>
+struct incomplete_t;
+template <typename... Types, typename... Args>
+auto show_types(Args&&...) -> incomplete_t<Types..., Args...>;
+endsnippet

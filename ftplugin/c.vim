@@ -1,4 +1,4 @@
-setlocal foldmethod=syntax
+setlocal foldmethod=marker
 setlocal commentstring=//\ %s
 let b:ale_linters = [
       \   'clangtidy',

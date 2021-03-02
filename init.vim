@@ -23,7 +23,7 @@ xnoremap <m-tab> <F13>
 cnoremap <m-tab> <space><bs>
 tnoremap <m-tab> <c-\><c-n>i
 
-let &guifont='Hack Nerd Font,Twitter Color Emoji,Kawkab Mono,Emoji One:h12'
+let &guifont='Hack Nerd Font,Twitter Color Emoji:h12'
 let g:neovide_cursor_vfx_mode = "ripple"
 
 set mouse=n               " Disable mouse support
@@ -37,7 +37,11 @@ set softtabstop=2         " Sets the number of columns for a TAB
 
 set number                " Show line numbers
 set relativenumber        " Show line numbers
-set lazyredraw            " Don't redraw the screen during commands/macros
+
+" bug: https://github.com/Kethku/neovide/issues/158
+" set lazyredraw          " Don't redraw the screen during commands/macros
+set noshowmode
+
 set scrolloff=5           " Scrolloff
 set formatoptions-=t      " Disable hard line wrapping
 set hidden                " Buffers don't need to attach to a window
@@ -129,6 +133,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'lambdalisue/suda.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'alaviss/nim.nvim'
+Plug 'puremourning/vimspector', { 'do': 'python3 install_gadget.py --enable-c'}
 call plug#end()
 
 lua << EOF
@@ -139,8 +145,9 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+let g:vimspector_enable_mappings = 'HUMAN'
 
-let g:coc_global_extensions = ['coc-python', 'coc-snippets', 'coc-clangd', 'coc-rust-analyzer']
+let g:coc_global_extensions = ['coc-python', 'coc-snippets', 'coc-rust-analyzer']
 " All possible highlighters
 let g:Hexokinase_highlighters = [
 \   'virtual',
@@ -172,6 +179,7 @@ let g:python_highlight_all = 1
 " Tab completion direction
 let g:SuperTabDefaultCompletionType = '<c-n>'
 augroup SuperTabConfig
+  autocmd!
   autocmd VimEnter * imap <silent> <tab> <plug>SuperTabForward
   autocmd VimEnter * imap <silent> <s-tab> <plug>SuperTabBackward
 augroup end

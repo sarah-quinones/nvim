@@ -1,5 +1,5 @@
 setlocal matchpairs+=<:>
-setlocal foldmethod=syntax
+set foldmethod=marker
 setlocal commentstring=//\ %s
 let b:ale_linters = [
       \   'clangtidy',
@@ -55,3 +55,9 @@ endfunction
 nnoremap <buffer><silent> [] :w <bar> call Compile_asm(1) <bar>
       \ call Compile_asm(2) <bar>
       \ checktime<cr>
+
+nnoremap ,p f<bar>a//<cr><esc>
+function! Split_pipe()
+  execute "s/ | /\\\/\\\/\r | "
+endfunction
+nnoremap ,p ma:s/ <bar> /\/\/\r <bar> <cr>'af/D:call CocActionAsync("format")<cr>

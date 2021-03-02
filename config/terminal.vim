@@ -15,9 +15,9 @@ if empty($SHELL)
   endif
 endif
 
-" Keep active window only
 if $SHELL == '/usr/bin/zsh'
   let &shell = $SHELL
+  let $PATH = system("source $ZDOTDIR/.zshrc && printf '%s' \"$PATH\"")
 endif
 if $SHELL == '/usr/bin/bash'
   let &shell = $SHELL . ' --rcfile ' . g:config_dir . '/config/termrc'

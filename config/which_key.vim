@@ -1,6 +1,6 @@
-let g:which_key_vertical = 1
+let g:which_key_vertical = 0
 let g:which_key_position = 'botright'
-let g:which_key_use_floating_win = 0
+let g:which_key_use_floating_win = 1
 let g:which_key_timeout = 100
 let g:which_key_display_names = {
       \ ' '         : '□'      ,

@@ -9,6 +9,39 @@
     ],
   },
   "diagnostic.displayByAle": false,
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "filetypes": [
+        "c",
+        "cc",
+        "cpp",
+        "h",
+        "hpp",
+        "hxx"
+      ],
+      "rootPatterns": [
+        ".clangd-root",
+        ".clangd",
+        "compile_commands.json",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".clangd-cache"
+        },
+        "highlight": {
+          "lsRanges": true
+        }
+      }
+    },
+    "nim": {
+      "command": "~/.nimble/bin/nimlsp",
+      "filetypes": ["nim"],
+      "trace.server": "verbose"
+    }
+  },
   "coc.preferences.previewAutoClose": false,
   "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "python.pythonPath": "~/.local/share/python/venv/bin/python3",
