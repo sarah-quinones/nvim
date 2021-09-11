@@ -1,76 +1,81 @@
+-- python setup
+vim.g.python3_host_prog = vim.env.HOME .. "/.local/share/nvim/venv/bin/python3"
+vim.api.nvim_set_option("pyxversion", 3)
+
+vim.api.nvim_set_option("guifont", "FiraCode Nerd Font:h8")
+vim.api.nvim_set_var("neovide_transparency", 0.8)
+
+-- shell integration (i think?)
+if vim.env.ZDOTDIR == nil or vim.env.LOCAL_HOME == nil then
+  vim.env.ZDOTDIR = vim.env.HOME .. "/.local/share/zsh"
+
+  local cmd = "zsh -c 'source $ZDOTDIR/.zshrc && printf \"%s\" \"$LOCAL_HOME\"'"
+  local f = assert(io.popen(cmd, "r"))
+  vim.env.LOCAL_HOME = assert(f:read("*a"))
+  f:close()
+
+  local cmd = "zsh -c 'source $ZDOTDIR/.zshrc && printf \"%s\" \"$PATH\"'"
+  local f = assert(io.popen(cmd, "r"))
+  vim.env.PATH = assert(f:read("*a"))
+  f:close()
+
+  vim.cmd([[cd $LOCAL_HOME]])
+end
+
+vim.env.VIMCONFIG = vim.env.LOCAL_HOME .. "/.config/nvim/"
+
+require "misc-utils"
+vim.cmd "syntax on"
 -- load all plugins
 require "pluginList"
 require "file-icons"
 
-require "misc-utils"
-require "top-bufferline"
 require "statusline"
 
-require("colorizer").setup()
-require("neoscroll").setup() -- smooth scroll
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
--- lsp
-require "nvim-lspconfig"
-require "compe-completion"
+-- colorscheme
+vim.cmd "colorscheme gruvbox"
 
-local cmd = vim.cmd
-local g = vim.g
+-- coc.nvim
+vim.g.coc_global_extensions = {"coc-vimlsp", "coc-python", "coc-snippets", "coc-rust-analyzer", "coc-clangd"}
 
-g.mapleader = " "
-g.auto_save = 0
+-- quick scope
+vim.g.qs_highlight_on_keys = {"f", "F", "t", "T"}
 
--- colorscheme related stuff
+-- targets.vim
+vim.g.targets_seekRanges = "cc cr cb cB lc ac Ac lr lb ar ab lB Ar"
+  .. "aB Ab AB rr ll rb al rB Al bb aa bB Aa BB AA"
 
-cmd "syntax on"
-
-local base16 = require "base16"
-base16(base16.themes["onedark"], true)
-
--- blankline
-
-local indent = 2
-
-g.indentLine_enabled = 1
-g.indent_blankline_char = "▏"
-
-cmd "hi IndentBlanklineChar guifg=#2a2e36"
-
-g.indent_blankline_filetype_exclude = {"help", "terminal"}
-g.indent_blankline_buftype_exclude = {"terminal"}
-
-g.indent_blankline_show_trailing_blankline_indent = false
-g.indent_blankline_show_first_indent_level = false
 
 require "treesitter-nvim"
 require "mappings"
 
--- highlights --
-cmd "hi LineNr guifg=#42464e"
-cmd "hi Comment guifg=#42464e"
-
-cmd "hi VertSplit guifg=#2a2e36"
-cmd "hi EndOfBuffer guifg=#1e222a"
-cmd "hi PmenuSel guibg=#98c379"
-cmd "hi Pmenu  guibg=#282c34"
-
 require "telescope-nvim"
-require "nvimTree"
 
--- git signs , lsp symbols etc
+-- git signs
 require "gitsigns-nvim"
+
+-- auto pairs
 require("nvim-autopairs").setup()
-require("lspkind").init()
 
--- hide line numbers in terminal windows
-vim.api.nvim_exec([[
-   au BufEnter term://* setlocal nonumber
-]], false)
+vim.cmd([[
+  augroup window_focus_relnum
+    autocmd!
+    autocmd FocusLost   * setlocal norelativenumber
+    autocmd FocusGained * setlocal   relativenumber
+  augroup end
+]])
 
--- inactive statuslines as thin splitlines
-cmd("highlight! StatusLineNC gui=underline guifg=#383c44")
+-- highlight matches in search->cedit
+local cmd = "autocmd TextChanged,TextChangedI,TextChangedP " ..
+            "<buffer> let @/ = getline('.')"
+vim.cmd([[
+  augroup cmd_win_highlight
+    autocmd!
+    autocmd CmdwinEnter /,? let @/ = getline('.') | ]] .. cmd .. "\naugroup end"
+)
 
-cmd "hi clear CursorLine"
-cmd "hi cursorlinenr guifg=#abb2bf"
-
--- setup for TrueZen.nvim
-require "zenmode"
+require "buffers"
+require "terminal"

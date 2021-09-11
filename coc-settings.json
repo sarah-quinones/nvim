@@ -1,0 +1,25 @@
+{
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.virtualTextPrefix": "|> ",
+  "diagnostic.maxWindowHeight": 20,
+  "diagnostic.maxWindowWidth": 200,
+  "hover.floatMaxWidth": 200,
+  "snippets.userSnippetsDirectory": "$VIMCONFIG/Ultisnips",
+  "snippets.loadFromExtensions": false,
+  "snippets.extends": {
+    "cpp": [
+      "c"
+    ]
+  },
+  "coc.preferences.previewAutoClose": false,
+  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
+  "rust-analyzer.checkOnSave.extraArgs": ["--target-dir", "target/check"],
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true,
+  "python.pythonPath": "~/.local/share/python/venv/bin/python3",
+  "python.formatting.blackPath": "~/.local/share/python/venv/bin/black" ,
+  "python.jediEnabled": false,
+  "python.formatting.provider": "black"
+}

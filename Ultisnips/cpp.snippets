@@ -1,0 +1,176 @@
+priority -39
+
+clearsnippets tp
+
+snippet incc "include system"
+#include <${1:iostream}>
+endsnippet
+
+snippet inc "include local"
+#include "${1:${VISUAL}}"
+endsnippet
+
+snippet tp "template"
+template <typename $1> $0
+endsnippet
+
+snippet vtp "veg template"
+VEG_TEMPLATE(($1), requires($2), $3, ($4, $5) $6) $0
+endsnippet
+snippet vcp "veg concept" i
+VEG_CONCEPT($1) $0
+endsnippet
+
+snippet tn "typename" i
+typename 
+endsnippet
+
+snippet st "struct"
+struct $1 {
+	$0
+};
+endsnippet
+
+snippet { "brace block" i
+{
+	$0
+
+endsnippet
+
+snippet fore "ranged for"
+for (auto const& ${1:e} : ${2:container}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet tern
+	${1:/* condition */} ? ${2:a} : ${3:b}
+endsnippet
+
+snippet foree "forwarding ranged for"
+for (auto&& ${1:e} : ${2:container}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet fori "for loop"
+for (int ${1:i} = 0; $1 < ${2:count}; ${3:++$1}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet forir "for loop (reverse)"
+for (int ${1:i} = ${2:count}; $1 >= 0; ${3:--$1}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet ln "newline" i
+\n
+endsnippet
+
+snippet lnn "newline char" i
+'\n'
+endsnippet
+
+snippet cout "print to stdout"
+std::cout << ${VISUAL}$0 << '\n';
+endsnippet
+
+snippet cin
+	std::cin >> ${1};
+endsnippet
+
+snippet fmt "print to stdout (libfmt)"
+fmt::print("${1:\{\}}\n", ${2:${VISUAL}});
+endsnippet
+
+snippet sca "static cast" i
+static_cast<$2>(${1:${VISUAL}})$0
+endsnippet
+
+snippet idn "typeid" i
+typeid(${0:${VISUAL}}).name()
+endsnippet
+
+snippet id "typeid" i
+typeid(${0:${VISUAL}})
+endsnippet
+
+snippet sz "sizeof" i
+sizeof(${0:${VISUAL}})
+endsnippet
+
+snippet mainn "main (no args)" b
+auto main() -> int {
+	$0
+}
+endsnippet
+
+snippet main "main" b
+auto main(int argc, char *argv[]) -> int {
+	$0
+}
+endsnippet
+
+snippet ld "lambda"
+	[${1}](${2}){${3}};
+endsnippet
+
+snippet once "header guards"
+`!p
+import random, string, pathlib
+vim.command("let __tmp = getcwd()")
+root = pathlib.Path(snip.opt("__tmp", "")).name
+name = re.sub(r"[^A-Za-z0-9]+","_", root + "_" + fn).upper()
+rand = "".join(random.sample(string.ascii_letters+string.digits, 8))
+macro = ("%s_%ss" % (name,rand)).upper()
+snip.rv = f"#ifndef {macro}\n#define {macro}\n\n{snip.v.text}\n#endif /* end of include guard {macro} */"
+`
+endsnippet
+
+snippet ns "namespace"
+namespace $1 {
+${VISUAL}$0
+} // namespace $1
+endsnippet
+
+snippet iter "$1.begin(), $1.end() (beginend)"
+${1:${VISUAL}}.begin(), $1.end()
+endsnippet
+
+snippet nd "nodiscard attribute"
+[[nodiscard]] 
+endsnippet
+
+
+snippet nol "Disable clang-tidy" i
+// NOLINT
+endsnippet
+
+snippet noll "Disable clang-tidy" i
+/* NOLINT */
+endsnippet
+
+snippet req "SFINAE Constraint"
+typename std::enable_if<$1, ${VISUAL}>::type$0
+endsnippet
+
+snippet pred "SFINAE Constraint"
+$1<${VISUAL}>::value$0
+endsnippet
+
+snippet f- "Disable clang format"
+// clang-format off
+endsnippet
+
+snippet f+ "Reenable clang format"
+// clang-format on
+endsnippet
+
+snippet debug_type "Error with type names"
+template <typename... Ts>
+struct incomplete_t;
+template <typename... Types, typename... Args>
+auto print_types_halt(Args&&...) -> incomplete_t<Types..., Args...>;
+endsnippet

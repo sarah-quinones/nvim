@@ -1,0 +1,49 @@
+priority -40
+
+snippet dateh "YYYY-MM-DD hh" w
+`!v strftime("%Y-%m-%d %Hh")`
+endsnippet
+
+snippet "lorem(([1-3]))?" "Lorem Ipsum" r
+`!p
+Lorem = ["""\
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet urna
+sit amet orci commodo venenatis. Praesent tincidunt quam in quam placerat, non
+tincidunt augue bibendum. Ut vehicula finibus turpis, in mollis urna feugiat
+ac. Praesent vulputate blandit odio, quis maximus magna semper quis. Nunc
+maximus risus eu neque blandit eleifend. Duis ut quam metus.  Suspendisse
+convallis aliquam facilisis. Class aptent taciti sociosqu ad litora torquent
+per conubia nostra, per inceptos himenaeos. Duis vitae libero non massa
+pellentesque accumsan. Fusce id eleifend sem, eget sollicitudin massa. Mauris
+pretium, ex nec pharetra placerat, risus est facilisis ligula, non pellentesque
+augue nibh id mauris. Duis sit amet consectetur velit.  Vestibulum condimentum
+massa quis mi fringilla rutrum. Sed dictum lobortis magna et elementum. Donec
+auctor hendrerit sapien, eu venenatis turpis ullamcorper at. Curabitur in
+luctus nibh.""".replace("    ", ""),
+
+"""\
+Proin viverra eu turpis eu sodales. Vivamus ac volutpat massa. Pellentesque
+posuere, nisl id fermentum suscipit, tellus sem porttitor ipsum, et placerat
+neque erat sed lorem. Donec turpis quam, accumsan vel orci sit amet, dapibus
+dapibus tellus. Vestibulum tincidunt viverra pharetra. Cras id mauris eu tortor
+euismod semper a vel massa. Nulla sollicitudin lorem et fringilla ultricies.
+Nulla facilisi. Etiam ac nulla sed nisi dapibus tincidunt sed vel est. In
+sollicitudin fringilla quam et ornare. Nulla nec iaculis lacus. Pellentesque
+habitant morbi tristique senectus et netus et malesuada fames ac turpis
+egestas. Nunc sed tincidunt sem, ut tempus libero. Phasellus pretium arcu eu
+odio volutpat blandit vitae id metus.""".replace("    ", ""),
+
+"""\
+Curabitur tristique est a rutrum rutrum. Nullam lobortis, nibh a egestas
+luctus, libero diam sollicitudin lorem, consequat pellentesque sapien massa eu
+magna. Integer sed blandit nisl. Donec volutpat ex a arcu auctor, vitae
+efficitur augue lacinia. Fusce hendrerit tristique arcu, vitae blandit massa
+imperdiet et. Suspendisse posuere velit arcu, in vulputate erat cursus eget.
+Duis ac ultrices tellus, quis tristique ipsum. Donec blandit tristique eros sit
+amet pellentesque. Quisque lorem erat, rhoncus ac lectus at, aliquam facilisis
+ante. Nam rhoncus purus ut quam tempor, vitae gravida leo condimentum. Aliquam
+bibendum eu nisl a rhoncus. Suspendisse ornare sem sapien, ut tristique massa
+varius eget. Vestibulum vel sapien eu massa vulputate pellentesque eget
+convallis eros.""".replace("    ", "")]
+snip.rv = '\n\n'.join(Lorem[:int(match.group(1))]) if match.group(1) else '\n\n'.join(Lorem[:])`
+endsnippet

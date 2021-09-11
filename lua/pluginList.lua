@@ -4,49 +4,49 @@ local use = packer.use
 -- using { } for using different branch , loading plugin with certain commands etc
 return require("packer").startup(
     function()
+        -- themes
+        use "gruvbox-community/gruvbox"
+
+        -- coc
+        use { "neoclide/coc.nvim", branch = "release" }
+        use "ervandew/supertab"
+
+        -- navigation
+        use "vim-scripts/matchit.zip"
+        use "kshenoy/vim-signature"
+        use "wellle/targets.vim"
+        use "unblevable/quick-scope"
+        use "easymotion/vim-easymotion"
+
         use "wbthomason/packer.nvim"
+        use "tpope/vim-commentary"
+        use "tpope/vim-surround"
+        use "tpope/vim-repeat"
 
-        -- color related stuff
-        use "siduck76/nvim-base16.lua"
-        use "norcalli/nvim-colorizer.lua"
-        -- use "ollykel/v-vim" -- v syntax highlighter
-
-        -- lsp stuff
+        -- syntax highlighting
         use "nvim-treesitter/nvim-treesitter"
-        use "neovim/nvim-lspconfig"
-        use "hrsh7th/nvim-compe"
-        use "onsails/lspkind-nvim"
+
+        -- formatting
         use "sbdchd/neoformat"
-        use "nvim-lua/plenary.nvim"
 
         use "lewis6991/gitsigns.nvim"
         use "akinsho/nvim-bufferline.lua"
-        use "glepnir/galaxyline.nvim"
         use "windwp/nvim-autopairs"
-        use "alvan/vim-closetag"
-        
-        -- snippet support
-        use "hrsh7th/vim-vsnip"
-        use "rafamadriz/friendly-snippets"
 
         -- file managing , picker etc
-        use "kyazdani42/nvim-tree.lua"
         use "kyazdani42/nvim-web-devicons"
-        use "ryanoasis/vim-devicons"
+        use "glepnir/galaxyline.nvim"
         use "nvim-telescope/telescope.nvim"
-        use "nvim-telescope/telescope-media-files.nvim"
         use "nvim-lua/popup.nvim"
+        use "nvim-lua/plenary.nvim"
+        use "pbrisbin/vim-mkdir"
+        use "lambdalisue/suda.vim"
+        use "tpope/vim-eunuch"
 
         -- misc
         use "tweekmonster/startuptime.vim"
-        use "907th/vim-auto-save"
-        use "karb94/neoscroll.nvim"
-        use "kdav5758/TrueZen.nvim"
+        use "blueyed/vim-diminactive"
 
-        -- discord rich presence
-        --use "andweeb/presence.nvim"
-
-        use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
     end,
     {
         display = {
