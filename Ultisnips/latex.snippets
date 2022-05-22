@@ -11,6 +11,7 @@ $1
 ${5:\maketitle}
 
 $0
+
 \\end{document}
 endsnippet
 
@@ -37,6 +38,10 @@ snippet T "Transpose" i
 ^{\top}
 endsnippet
 
+snippet pT "Prime transpose" i
+^{\prime\top}
+endsnippet
+
 snippet sum "Sum" i
 \\sum_{${1:i}=${2:1}}^{${3:n}} $0
 endsnippet
@@ -46,10 +51,6 @@ snippet int "Integral" i
 endsnippet
 
 snippet pkg "Use package" b
-\usepackage{$1}
-endsnippet
-
-snippet up "Use package" b
 \usepackage{$1}
 endsnippet
 
@@ -371,6 +372,10 @@ snippet bf "bold face text"
 \\textbf{${1:${VISUAL:text}}}${0}
 endsnippet
 
+snippet mbf "bold face text" i
+\\mathbf{${1:${VISUAL:text}}}${0}
+endsnippet
+
 snippet under "underline text"
 \\underline{${1:${VISUAL:text}}}${0}
 endsnippet
@@ -601,4 +606,3 @@ endsnippet
 snippet enq enquote
 \\enquote{${1:${VISUAL:text}}} ${0}
 endsnippet
-

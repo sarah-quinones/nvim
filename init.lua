@@ -1,25 +1,14 @@
 -- python setup
-vim.g.python3_host_prog = vim.env.HOME .. "/.local/share/nvim/venv/bin/python3"
+vim.g.python3_host_prog = vim.env.HOME .. "/miniconda3/bin/python"
 vim.api.nvim_set_option("pyxversion", 3)
 
-vim.api.nvim_set_option("guifont", "FiraCode Nerd Font:h8")
-vim.api.nvim_set_var("neovide_transparency", 0.8)
+vim.g.neovide_guifont = "FiraCode Nerd Font"
+vim.api.nvim_set_option("guifont", vim.g.neovide_guifont .. ":h10")
 
 -- shell integration (i think?)
 if vim.env.ZDOTDIR == nil or vim.env.LOCAL_HOME == nil then
   vim.env.ZDOTDIR = vim.env.HOME .. "/.local/share/zsh"
-
-  local cmd = "zsh -c 'source $ZDOTDIR/.zshrc && printf \"%s\" \"$LOCAL_HOME\"'"
-  local f = assert(io.popen(cmd, "r"))
-  vim.env.LOCAL_HOME = assert(f:read("*a"))
-  f:close()
-
-  local cmd = "zsh -c 'source $ZDOTDIR/.zshrc && printf \"%s\" \"$PATH\"'"
-  local f = assert(io.popen(cmd, "r"))
-  vim.env.PATH = assert(f:read("*a"))
-  f:close()
-
-  vim.cmd([[cd $LOCAL_HOME]])
+  vim.env.LOCAL_HOME = vim.env.HOME
 end
 
 vim.env.VIMCONFIG = vim.env.LOCAL_HOME .. "/.config/nvim/"
@@ -36,10 +25,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- colorscheme
-vim.cmd "colorscheme gruvbox"
+vim.cmd([[colorscheme gruvbox]])
+vim.o.background = "dark"
 
 -- coc.nvim
-vim.g.coc_global_extensions = {"coc-vimlsp", "coc-python", "coc-snippets", "coc-rust-analyzer", "coc-clangd"}
+vim.g.coc_global_extensions = {"coc-vimlsp", "coc-pyright", "coc-snippets", "coc-rust-analyzer", "coc-clangd"}
 
 -- quick scope
 vim.g.qs_highlight_on_keys = {"f", "F", "t", "T"}

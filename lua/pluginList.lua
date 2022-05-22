@@ -1,56 +1,50 @@
-local packer = require("packer")
-local use = packer.use
+vim.cmd([[
+call plug#begin('~/.local/share/nvim/plugged')
 
--- using { } for using different branch , loading plugin with certain commands etc
-return require("packer").startup(
-    function()
-        -- themes
-        use "gruvbox-community/gruvbox"
+Plug 'gruvbox-community/gruvbox'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/matchit.zip'
+Plug 'kshenoy/vim-signature'
+Plug 'wellle/targets.vim'
 
-        -- coc
-        use { "neoclide/coc.nvim", branch = "release" }
-        use "ervandew/supertab"
+Plug 'ggandor/lightspeed.nvim'
 
-        -- navigation
-        use "vim-scripts/matchit.zip"
-        use "kshenoy/vim-signature"
-        use "wellle/targets.vim"
-        use "unblevable/quick-scope"
-        use "easymotion/vim-easymotion"
+Plug 'wbthomason/packer.nvim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
 
-        use "wbthomason/packer.nvim"
-        use "tpope/vim-commentary"
-        use "tpope/vim-surround"
-        use "tpope/vim-repeat"
+Plug 'nvim-treesitter/nvim-treesitter'
 
-        -- syntax highlighting
-        use "nvim-treesitter/nvim-treesitter"
+Plug 'sbdchd/neoformat'
 
-        -- formatting
-        use "sbdchd/neoformat"
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'akinsho/nvim-bufferline.lua'
+Plug 'windwp/nvim-autopairs'
 
-        use "lewis6991/gitsigns.nvim"
-        use "akinsho/nvim-bufferline.lua"
-        use "windwp/nvim-autopairs"
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'glepnir/galaxyline.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'lambdalisue/suda.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'simeji/winresizer'
 
-        -- file managing , picker etc
-        use "kyazdani42/nvim-web-devicons"
-        use "glepnir/galaxyline.nvim"
-        use "nvim-telescope/telescope.nvim"
-        use "nvim-lua/popup.nvim"
-        use "nvim-lua/plenary.nvim"
-        use "pbrisbin/vim-mkdir"
-        use "lambdalisue/suda.vim"
-        use "tpope/vim-eunuch"
+Plug 'tweekmonster/startuptime.vim'
+Plug 'sainnhe/edge'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'olimorris/onedarkpro.nvim'
 
-        -- misc
-        use "tweekmonster/startuptime.vim"
-        use "blueyed/vim-diminactive"
+Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
 
-    end,
-    {
-        display = {
-            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
-        }
-    }
-)
+" Debugging
+Plug 'nvim-lua/plenary.nvim'
+Plug 'mfussenegger/nvim-dap'
+
+call plug#end()
+]])

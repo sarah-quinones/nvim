@@ -16,7 +16,6 @@ for _, char in ipairs({"¹", "²", "³", "€", "×", "÷", "µ", "ç", "é"}) d
 end
 
 for _, mode in ipairs({"n", "v"}) do
-  map(mode, ":", ",", opt)
   map(mode, "\\", ":", opt)
 end
 
@@ -44,6 +43,8 @@ vim.api.nvim_set_keymap("n", "<LocalLeader>f", "<Plug>(coc-fix-current)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>i", "<Plug>(coc-implementation)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>t", "<Plug>(coc-type-definition)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>s", "<Plug>(coc-references)", {})
+vim.api.nvim_set_keymap("n", "<LocalLeader>l", "<Plug>(coc-codelens-action)", {})
+vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<Plug>(coc-codeaction)", {})
 
 for key1, name in pairs({d = "Definition", D = "Declaration"}) do
   for key2, arg in pairs({[key1] = "", s = "split", v = "vsplit", t = "tabedit"}) do
@@ -65,12 +66,15 @@ vim.g.coc_snippet_next = '<C-j>'
 vim.g.coc_snippet_prev = '<C-k>'
 
 -- easymotion
-for _, char in ipairs({"j", "k", "s", "f", "t", "F", "T", "w", "e", "b", "W", "E", "B"}) do
-  vim.api.nvim_set_keymap("n", f"<M-{char}>", f"<Plug>(easymotion-{char})", {silent=true})
-end
-vim.api.nvim_set_keymap("n", f"<M-l>", "<Plug>(easymotion-overwin-line)", {silent=true})
-vim.api.nvim_set_keymap("n", f"<M-n>", "<Plug>(easymotion-ge)", {silent=true})
-vim.api.nvim_set_keymap("n", f"<M-N>", "<Plug>(easymotion-gE)", {silent=true})
+vim.api.nvim_set_keymap("o", f":", "<Plug>Lightspeed_,_ft", opt)
+vim.api.nvim_set_keymap("x", f":", "<Plug>Lightspeed_,_ft", opt)
+vim.api.nvim_set_keymap("n", f":", "<Plug>Lightspeed_,_ft", opt)
+-- for _, char in ipairs({"j", "k", "s", "f", "t", "F", "T", "w", "e", "b", "W", "E", "B"}) do
+--   vim.api.nvim_set_keymap("n", f"<M-{char}>", f"<Plug>(easymotion-{char})", {silent=true})
+-- end
+-- vim.api.nvim_set_keymap("n", f"<M-l>", "<Plug>(easymotion-overwin-line)", {silent=true})
+-- vim.api.nvim_set_keymap("n", f"<M-n>", "<Plug>(easymotion-ge)", {silent=true})
+-- vim.api.nvim_set_keymap("n", f"<M-N>", "<Plug>(easymotion-gE)", {silent=true})
 
 -- command mode mappings
 map("c", "<C-p>", "<up>", opt)
@@ -169,6 +173,8 @@ end
 
 map("n", "<C-w>o", "<Nop>", opt)
 vim.api.nvim_set_keymap("n", "<C-w>p", "<Plug>(coc-float-jump)", {})
+vim.api.nvim_set_keymap("i", "<C-f>", "<C-R>=coc#float#scroll(1)<CR>", {})
+vim.api.nvim_set_keymap("i", "<C-b>", "<C-R>=coc#float#scroll(0)<CR>", {})
 
 map("t", "<C-BS>", "<BS>", opt)
 map("t", "<S-BS>", "<BS>", opt)
@@ -181,6 +187,8 @@ map("n", "<Leader>qq",
   "else <Bar> echo \"\\n\\n\" " ..
   "<Bar> endif<CR>" , opt)
 
+map("i", "<C-Space>", "coc#refresh()", {silent = true, expr = true})
+map("n", "<F5>", ":mode<CR>", opt)
 -- supertab
 vim.g.SuperTabDefaultCompletionType = "<C-n>"
 vim.cmd([[
