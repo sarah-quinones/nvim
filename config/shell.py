@@ -10,7 +10,7 @@ def abs_path(path: Path) -> str:
 
 
 def main(cmd, args):
-    serveraddr = environ["NVIM_LISTEN_ADDRESS"]
+    serveraddr = environ["NVIM"]
 
     if serveraddr[0] == "/":
         nvim = neovim.attach("socket", path=serveraddr)

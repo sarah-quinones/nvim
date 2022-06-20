@@ -3,7 +3,8 @@ vim.g.python3_host_prog = vim.env.HOME .. "/miniconda3/bin/python"
 vim.api.nvim_set_option("pyxversion", 3)
 
 vim.g.neovide_guifont = "FiraCode Nerd Font"
-vim.api.nvim_set_option("guifont", vim.g.neovide_guifont .. ":h10")
+vim.g.neovide_fontsize = 10
+vim.api.nvim_set_option("guifont", vim.g.neovide_guifont .. ":h" .. vim.g.neovide_fontsize)
 
 -- shell integration (i think?)
 if vim.env.ZDOTDIR == nil or vim.env.LOCAL_HOME == nil then

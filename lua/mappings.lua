@@ -65,16 +65,19 @@ vim.api.nvim_set_keymap("v", "<C-s>", "<Plug>(coc-snippets-select)", opt)
 vim.g.coc_snippet_next = '<C-j>'
 vim.g.coc_snippet_prev = '<C-k>'
 
+vim.api.nvim_set_keymap("n", "<Leader>+", [[
+  <Cmd> let g:neovide_fontsize = g:neovide_fontsize + 1 | 
+\ let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>
+]], opt)
+vim.api.nvim_set_keymap("n", "<Leader>-", [[
+  <Cmd> let g:neovide_fontsize = g:neovide_fontsize - 1 | 
+\ let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>
+]], opt)
+
 -- easymotion
 vim.api.nvim_set_keymap("o", f":", "<Plug>Lightspeed_,_ft", opt)
 vim.api.nvim_set_keymap("x", f":", "<Plug>Lightspeed_,_ft", opt)
 vim.api.nvim_set_keymap("n", f":", "<Plug>Lightspeed_,_ft", opt)
--- for _, char in ipairs({"j", "k", "s", "f", "t", "F", "T", "w", "e", "b", "W", "E", "B"}) do
---   vim.api.nvim_set_keymap("n", f"<M-{char}>", f"<Plug>(easymotion-{char})", {silent=true})
--- end
--- vim.api.nvim_set_keymap("n", f"<M-l>", "<Plug>(easymotion-overwin-line)", {silent=true})
--- vim.api.nvim_set_keymap("n", f"<M-n>", "<Plug>(easymotion-ge)", {silent=true})
--- vim.api.nvim_set_keymap("n", f"<M-N>", "<Plug>(easymotion-gE)", {silent=true})
 
 -- command mode mappings
 map("c", "<C-p>", "<up>", opt)
