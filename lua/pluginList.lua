@@ -1,4 +1,9 @@
 vim.cmd([[
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+  \| endif
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
@@ -21,6 +26,8 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sbdchd/neoformat'
 
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'TimUntersberger/neogit'
+
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'windwp/nvim-autopairs'
 
@@ -45,6 +52,14 @@ Plug 'simrat39/rust-tools.nvim'
 " Debugging
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
+
+Plug 'anuvyklack/hydra.nvim'
+Plug 'anuvyklack/keymap-layer.nvim'
+
+Plug 'sindrets/winshift.nvim'
+Plug 'jlanzarotta/bufexplorer'
+
+Plug 'johnfrankmorgan/whitespace.nvim'
 
 call plug#end()
 ]])

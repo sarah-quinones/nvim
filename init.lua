@@ -5,6 +5,7 @@ vim.api.nvim_set_option("pyxversion", 3)
 vim.g.neovide_guifont = "FiraCode Nerd Font"
 vim.g.neovide_fontsize = 10
 vim.api.nvim_set_option("guifont", vim.g.neovide_guifont .. ":h" .. vim.g.neovide_fontsize)
+vim.api.nvim_set_option("wrap", false)
 
 -- shell integration (i think?)
 if vim.env.ZDOTDIR == nil or vim.env.LOCAL_HOME == nil then
@@ -68,5 +69,29 @@ vim.cmd([[
     autocmd CmdwinEnter /,? let @/ = getline('.') | ]] .. cmd .. "\naugroup end"
 )
 
+local neogit = require('neogit')
+neogit.setup {}
+
 require "buffers"
 require "terminal"
+require "hydra_def"
+
+require('whitespace-nvim').setup({
+    -- configuration options and their defaults
+
+    -- `highlight` configures which highlight is used to display
+    -- trailing whitespace
+    highlight = 'DiffDelete',
+
+    -- `ignored_filetypes` configures which filetypes to ignore when
+    -- displaying trailing whitespace
+    ignored_filetypes = { 'TelescopePrompt', '', 'NeogitPopup' },
+})
+
+-- remove trailing whitespace with a keybinding
+vim.api.nvim_set_keymap(
+    'n',
+    '<Leader>t',
+    [[<cmd>lua require('whitespace-nvim').trim()<CR>]],
+    { noremap = true }
+)
