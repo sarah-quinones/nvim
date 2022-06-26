@@ -1,7 +1,7 @@
 local Hydra = require('hydra')
 
 Hydra({
-   name = 'Side scroll',
+   name = 'side scroll',
    mode = 'n',
    body = 'z',
    heads = {
@@ -14,7 +14,7 @@ Hydra({
 
 Hydra({
    hint = [[
- ^^^^^^     Move     ^^^^^^   ^^     Split         ^^^^    Size
+ ^^^^^^     move     ^^^^^^   ^^     split         ^^^^    size
  ^^^^^^--------------^^^^^^   ^^---------------    ^^^^-------------
  ^ ^ _k_ ^ ^   ^ ^ _K_ ^ ^    _s_: horizontally    _+_ _-_: height
  _h_ ^ ^ _l_   _H_ ^ ^ _L_    _v_: vertically      _>_ _<_: width
@@ -23,13 +23,13 @@ Hydra({
  ^ ^ ^ ^ ^ ^   ^ ^ ^ ^ ^ ^    _b_: choose buffer   ^ ^ ^ ^    _<Esc>_
 ]],
    config = {
-      timeout = 4000,
+      invoke_on_body = true,
       hint = {
          border = 'rounded'
       }
    },
    mode = 'n',
-   body = '<C-w>',
+   body = '<Leader>w',
    heads = {
       -- Move focus
       { 'h', '<C-w>h' },
@@ -57,6 +57,42 @@ Hydra({
    }
 })
 
+Hydra({
+   hint = [[
+   _>_: font size up
+   _<_: font size down
+   _=_: reset font size
+]],
+   config = {
+     color = 'pink',
+      invoke_on_body = true,
+      hint = {
+         position = 'middle',
+         border = 'rounded'
+      }
+   },
+   mode = 'n',
+   body = '<Leader>a',
+   heads = {
+      -- Move focus
+      {
+        '>',
+        [[<Cmd> let g:neovide_fontsize = g:neovide_fontsize + 1 | let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>]],
+        { desc = 'increase font size' }
+      },
+      {
+        '<',
+        [[<Cmd> let g:neovide_fontsize = g:neovide_fontsize - 1 | let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>]],
+        { desc = 'decrease font size' }
+      },
+      {
+        '=',
+        [[<Cmd> let g:neovide_fontsize = g:neovide_default_fontsize | let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>]],
+        { desc = 'decrease font size' }
+      },
+   }
+})
+
 local gitsigns = require('gitsigns')
 
 Hydra({
@@ -76,11 +112,9 @@ Hydra({
       },
       on_enter = function()
          vim.bo.modifiable = false
-         gitsigns.toggle_signs(true)
          gitsigns.toggle_linehl(true)
       end,
       on_exit = function()
-         gitsigns.toggle_signs(false)
          gitsigns.toggle_linehl(false)
          gitsigns.toggle_deleted(false)
          vim.cmd 'echo' -- clear the echo area

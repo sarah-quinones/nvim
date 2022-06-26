@@ -65,15 +65,6 @@ vim.api.nvim_set_keymap("v", "<C-s>", "<Plug>(coc-snippets-select)", opt)
 vim.g.coc_snippet_next = '<C-j>'
 vim.g.coc_snippet_prev = '<C-k>'
 
-vim.api.nvim_set_keymap("n", "<Leader>+", [[
-  <Cmd> let g:neovide_fontsize = g:neovide_fontsize + 1 | 
-\ let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>
-]], opt)
-vim.api.nvim_set_keymap("n", "<Leader>-", [[
-  <Cmd> let g:neovide_fontsize = g:neovide_fontsize - 1 | 
-\ let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>
-]], opt)
-
 -- easymotion
 vim.api.nvim_set_keymap("o", f":", "<Plug>Lightspeed_,_ft", opt)
 vim.api.nvim_set_keymap("x", f":", "<Plug>Lightspeed_,_ft", opt)
@@ -123,7 +114,7 @@ map("n", "/", ":set hlsearch<CR>/", opt)
 map("n", "?", ":set hlsearch<CR>?", opt)
 
 for key, fwd in pairs({["*"] = 1, ["#"] = 0}) do
-  map("n", key, 
+  map("n", key,
     "<Cmd>let @/ = '\\<'.expand('<cword>').'\\>'" ..
     f"<Bar> let v:searchforward={fwd}" ..
     "<Bar> set hlsearch<CR>", {silent = true})

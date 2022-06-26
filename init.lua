@@ -3,7 +3,8 @@ vim.g.python3_host_prog = vim.env.HOME .. "/miniconda3/bin/python"
 vim.api.nvim_set_option("pyxversion", 3)
 
 vim.g.neovide_guifont = "FiraCode Nerd Font"
-vim.g.neovide_fontsize = 10
+vim.g.neovide_default_fontsize = 10
+vim.g.neovide_fontsize = vim.g.neovide_default_fontsize
 vim.api.nvim_set_option("guifont", vim.g.neovide_guifont .. ":h" .. vim.g.neovide_fontsize)
 vim.api.nvim_set_option("wrap", false)
 
