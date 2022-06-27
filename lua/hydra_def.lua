@@ -59,12 +59,12 @@ Hydra({
 
 Hydra({
    hint = [[
-   _>_: font size up
-   _<_: font size down
+   _>_: font size up      _d_: day background
+   _<_: font size down    _n_: night background
    _=_: reset font size
 ]],
    config = {
-     color = 'pink',
+     color = 'amaranth',
       invoke_on_body = true,
       hint = {
          position = 'middle',
@@ -72,7 +72,7 @@ Hydra({
       }
    },
    mode = 'n',
-   body = '<Leader>a',
+   body = '<Leader>t',
    heads = {
       -- Move focus
       {
@@ -89,6 +89,16 @@ Hydra({
         '=',
         [[<Cmd> let g:neovide_fontsize = g:neovide_default_fontsize | let &guifont = g:neovide_guifont . ':h' . g:neovide_fontsize<CR>]],
         { desc = 'decrease font size' }
+      },
+      {
+        'd',
+        [[<Cmd> let &background = "light"<CR>]],
+        { desc = 'day background' }
+      },
+      {
+        'n',
+        [[<Cmd> let &background = "dark"<CR>]],
+        { desc = 'night background' }
       },
    }
 })

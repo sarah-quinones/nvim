@@ -28,8 +28,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- colorscheme
+vim.g.background_theme = "dark"
 vim.cmd([[colorscheme gruvbox]])
-vim.o.background = "dark"
+vim.o.background = vim.g.background_theme
 
 -- coc.nvim
 vim.g.coc_global_extensions = {"coc-vimlsp", "coc-pyright", "coc-snippets", "coc-rust-analyzer", "coc-clangd"}
@@ -92,7 +93,7 @@ require('whitespace-nvim').setup({
 -- remove trailing whitespace with a keybinding
 vim.api.nvim_set_keymap(
     'n',
-    '<Leader>t',
-    [[<cmd>lua require('whitespace-nvim').trim()<CR>]],
+    '<Leader>.',
+    [[<Cmd>lua require('whitespace-nvim').trim()<CR>]],
     { noremap = true }
 )
