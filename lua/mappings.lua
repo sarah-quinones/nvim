@@ -43,8 +43,8 @@ vim.api.nvim_set_keymap("n", "<LocalLeader>f", "<Plug>(coc-fix-current)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>i", "<Plug>(coc-implementation)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>t", "<Plug>(coc-type-definition)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>s", "<Plug>(coc-references)", {})
-vim.api.nvim_set_keymap("n", "<LocalLeader>l", "<Plug>(coc-codelens-action)", {})
-vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<Plug>(coc-codeaction)", {})
+vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<Plug>(coc-codeaction-cursor)", {})
+vim.api.nvim_set_keymap("v", "<LocalLeader>a", "<Plug>(coc-codeaction-selected)", {})
 
 for key1, name in pairs({d = "Definition", D = "Declaration"}) do
   for key2, arg in pairs({[key1] = "", s = "split", v = "vsplit", t = "tabedit"}) do
