@@ -54,14 +54,6 @@ require "gitsigns-nvim"
 -- auto pairs
 require("nvim-autopairs").setup()
 
-vim.cmd([[
-  augroup window_focus_relnum
-    autocmd!
-    autocmd FocusLost   * setlocal norelativenumber
-    autocmd FocusGained * setlocal   relativenumber
-  augroup end
-]])
-
 -- highlight matches in search->cedit
 local cmd = "autocmd TextChanged,TextChangedI,TextChangedP " ..
             "<buffer> let @/ = getline('.')"

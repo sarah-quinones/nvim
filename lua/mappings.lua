@@ -43,7 +43,9 @@ vim.api.nvim_set_keymap("n", "<LocalLeader>f", "<Plug>(coc-fix-current)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>i", "<Plug>(coc-implementation)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>t", "<Plug>(coc-type-definition)", {})
 vim.api.nvim_set_keymap("n", "<LocalLeader>s", "<Plug>(coc-references)", {})
-vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<Plug>(coc-codeaction-cursor)", {})
+vim.api.nvim_set_keymap("n", "<LocalLeader>A", "<Plug>(coc-codeaction)", opt)
+vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<Plug>(coc-codeaction-cursor)", opt)
+map("n", "<LocalLeader>p", ":CocCommand rust-analyzer.parentModule<CR>", {})
 vim.api.nvim_set_keymap("v", "<LocalLeader>a", "<Plug>(coc-codeaction-selected)", {})
 
 for key1, name in pairs({d = "Definition", D = "Declaration"}) do
@@ -182,6 +184,7 @@ map("n", "<Leader>qq",
   "<Bar> endif<CR>" , opt)
 
 map("i", "<C-Space>", "coc#refresh()", {silent = true, expr = true})
+map("i", "<C-CR>", "coc#_select_confirm()", {silent = true, expr = true})
 map("n", "<F5>", ":mode<CR>", opt)
 -- supertab
 vim.g.SuperTabDefaultCompletionType = "<C-n>"
